@@ -1,0 +1,40 @@
+
+{%  load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <link rel="stylesheet" href="{% static 'base.css' %}">
+</head>
+<body>
+
+<form method="post" action="profile" enctype="multipart/form-data">
+    {% csrf_token %}
+  <div class="container">
+        <h3>Update Your Profile here..</h3>
+      <label><b>Address</b></label>
+    <input type="text" placeholder="Enter Address" name="add" required>
+
+      <label><b>Birthday</b></label><br>
+    <input type="date" name="bday"><br><br>
+
+
+
+       <label><b>Mobile</b></label>
+    <input type="text" placeholder="Enter mobile" name="mob" required>
+
+     <input type="file" name="myfile">
+
+      <div class="clearfix">
+
+      <button type="submit" class="signupbtn">Sign Up</button>
+    </div>
+  </div>
+</form>
+
+
+{#    <span class="psw">Click here to login<a href="/login/"></a></span>#}
+</body>
+</html>
