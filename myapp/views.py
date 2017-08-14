@@ -13,7 +13,7 @@ def save(request):
     c.update(csrf(request))
 
     if request.method == "POST":
-        print request.POST
+        # print request.POST
         user = User.objects.create_user( first_name=request.POST.get("fname"),
                                         last_name=request.POST.get("lname"),username=request.POST.get("uname"),
                                         email=request.POST.get("email"),
@@ -37,7 +37,7 @@ def loginview(request):
         user = authenticate(username=username, password=password)
         print user,"main user"
         if user is not None:
-            print user,"hzsdfdgxfhcfgh"
+            # print user,"hzsdfdgxfhcfgh"
             login(request,user)
 
             return render(request, "afterlogin.html")
@@ -78,7 +78,7 @@ def update_profile(request):
         bday = request.POST.get("bday")
         mobile = request.POST.get("mob")
         myfile = request.FILES['myfile']
-        print request.FILES
+        # print request.FILES
 
         fs = FileSystemStorage()
 
