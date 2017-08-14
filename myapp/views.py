@@ -35,7 +35,7 @@ def loginview(request):
         password=request.POST.get('psw')
 
         user = authenticate(username=username, password=password)
-        print user,"main user"
+        # print user,"main user"
         if user is not None:
             # print user,"hzsdfdgxfhcfgh"
             login(request,user)
@@ -95,11 +95,11 @@ def update_profile(request):
         p=Details(user=l,location=address,birth_date=bday,mobile=mobile,image_path=uploaded_file_url)
 
         p.save()
-        print uploaded_file_url, "dsfsdf"
-        print p.image_path
-
+        # print uploaded_file_url, "dsfsdf"
+        # print p.image_path
+        #
         u = Details()
-        print u.image_path,"after pathhhh"
+        # print u.image_path,"after pathhhh"
 
         return HttpResponse("sdfdgdg")
 
