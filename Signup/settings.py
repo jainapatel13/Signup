@@ -22,6 +22,40 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '8+5u=*e^t(hy4o7m9hwhy)b#(6&333on)3ohdcfsn=pz(z=(l9'
 
+# Stripe GateWay configuration.
+# PINAX_STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "pk_test_7nLdqI3hfKky0l404YDBaOkY")
+# PINAX_STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_test_TxB13dcGsgcUHAOWaYrzhr0K")
+#
+# # Stripe Payment Plans
+# PAYMENTS_PLANS = {
+#     "monthly": {
+#         "stripe_plan_id": "pro-monthly",
+#         "name": "Web App Pro ($25/month)",
+#         "description": "The monthly subscription plan to WebApp",
+#         "price": 25,
+#         "currency": "usd",
+#         "interval": "month"
+#     },
+#     "yearly": {
+#         "stripe_plan_id": "pro-yearly",
+#         "name": "Web App Pro ($199/year)",
+#         "description": "The annual subscription plan to WebApp",
+#         "price": 199,
+#         "currency": "usd",
+#         "interval": "year"
+#     },
+#     "monthly-trial": {
+#         "stripe_plan_id": "pro-monthly-trial",
+#         "name": "Web App Pro ($25/month with 30 days free)",
+#         "description": "The monthly subscription plan to WebApp",
+#         "price": 25,
+#         "currency": "usd",
+#         "interval": "month",
+#         "trial_period_days": 30
+#     },
+# }
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -29,6 +63,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+SITE_ID = 1
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -38,6 +73,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
+    "django.contrib.sites",
+#    "pinax.stripe",
+#    "sales",
 ]
 
 MIDDLEWARE = [

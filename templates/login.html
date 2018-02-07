@@ -9,10 +9,10 @@
 </head>
 <body>
 
-<form action="login" method="post">
+<form action="home" method="post">
     {% csrf_token %}
   <div class="imgcontainer">
-    <img src="{% static  'img_avatar2.png'%}" alt="Avatar" class="avatar">
+    <img src="{% static  'ad.png'%}" alt="Avatar" class="avatar">
   </div>
 
   <div class="container">
@@ -28,7 +28,7 @@
 
   <div class="container" style="background-color:#f1f1f1">
     <button type="button" class="cancelbtn">Cancel</button>
-
+    <button type="button" class="cancelbtn">Sign Up</button>
     <span class="psw">Forgot <a href="/forget/">password?</a></span>
   </div>
 </form>

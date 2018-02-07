@@ -1,0 +1,139 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body {
+        width: 100%;
+        float: left;
+    }
+
+    .class1,
+    .class2,
+    .class3 {
+        width: 31.5%;
+        float: left;
+    }
+    .classA {
+        width: 100%;
+        float: left;
+    }
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+</head>
+<body>
+
+<form class="classA" action="/courses/" method="post">
+  <div class="imgcontainer">
+    <img src="{% static  'ad.png'%}" alt="Avatar" class="avatar">
+  </div>
+    {% csrf_token %}
+</form>
+<form class="class1" action="/courses/" method="post">
+  <div class="container">
+    <label><b>Courses</b></label>
+
+    <button type="submit">Courses</button>
+    </div>
+    {% csrf_token %}
+</form>
+<form class="class2" action="/events/" method="post">
+
+  <div class="container">
+    <label><b>Events</b></label><button>Events</button>
+    </div>
+    {% csrf_token %}
+</form>
+<form class="class3" action="/calendar/" method="post">
+
+  <div class="container">
+    <label><b>Calendar</b></label><button>Calendar</button>
+    </div>
+    {% csrf_token %}
+
+</form>
+<form class="class1" action="/academics/" method="post">
+
+  <div class="container">
+    <label><b>Academics</b></label><button>Academics</button>
+    </div>
+    {% csrf_token %}
+
+</form>
+<form class="class2" action="/library/" method="post">
+
+  <div class="container">
+    <label><b>Library</b></label><button>Library</button>
+    </div>
+    {% csrf_token %}
+
+</form>
+<form class="class3" action="/services/" method="post">
+
+  <div class="container">
+      <label><b>Student Service</b></label><button>Student Service</button>
+    </div>
+    {% csrf_token %}
+
+</form>
+<form class="class1" action="/maps/" method="post">
+
+  <div class="container">
+    <label><b>Maps1</b></label><button>Maps1</button>
+    </div>
+    {% csrf_token %}
+</form>
+<form class="class2" action="/maps/" method="post">
+
+  <div class="container">
+    <label><b>Maps2</b></label><button>Maps2</button>
+    </div>
+    {% csrf_token %}
+</form>
+<form class="class3" action="/maps/" method="post">
+
+  <div class="container">
+    <label><b>Maps3</b></label><button>Maps3</button>
+    </div>
+    {% csrf_token %}
+</form>
+{% comment %}<form action="." method="POST">{% csrf_token %}
+<script
+  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+  data-key="pk_test_7nLdqI3hfKky0l404YDBaOkY"
+  data-amount="2000"
+  data-name="Stripe.com"
+  data-description="2 widgets"
+  data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+  data-locale="auto"
+  data-zip-code="true">
+</script>
+</form>
+<script src="//checkout.stripe.com/v2/checkout.js"></script>
+<script>
+    $(function() {
+        $('body').on("click", '.change-card, .subscribe-form button[type=submit]', function(e) {
+          e.preventDefault();
+          var $form = $(this).closest("form"),
+              token = function(res) {
+                $form.find("input[name=stripe_token]").val(res.id);
+                $form.trigger("submit");
+              };
+
+          StripeCheckout.open({
+            key:         $form.data("sk_test_TxB13dcGsgcUHAOWaYrzhr0K"),
+            name:        'Payment Method',
+            panelLabel:  'Add Payment Method',
+            token:       token
+          });
+
+          return false;
+        });
+    });
+</script>{% endcomment %}
+</body>
+</html>

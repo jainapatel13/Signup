@@ -1,10 +1,11 @@
-from django.contrib.auth import authenticate,login,logout
-from django.shortcuts import render,HttpResponse
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render, HttpResponse
 from django.template.context_processors import csrf
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
-from . models import Details
+from .models import Details
+
 
 # Create your views here.
 
@@ -14,13 +15,13 @@ def save(request):
 
     if request.method == "POST":
         # print request.POST
-        user = User.objects.create_user( first_name=request.POST.get("fname"),
-                                        last_name=request.POST.get("lname"),username=request.POST.get("uname"),
+        user = User.objects.create_user(first_name=request.POST.get("fname"),
+                                        last_name=request.POST.get("lname"), username=request.POST.get("uname"),
                                         email=request.POST.get("email"),
-                                        password=request.POST.get("psw"),)
+                                        password=request.POST.get("psw"), )
         user.save()
 
-        return render(request,"afterregister.html")
+        return render(request, "afterregister.html")
     else:
         return render(request, "signupform.html", c)
 
@@ -31,16 +32,15 @@ def loginview(request):
 
     if request.method == "POST":
 
-        username=request.POST.get('uname')
-        password=request.POST.get('psw')
+        username = request.POST.get('uname')
+        password = request.POST.get('psw')
 
         user = authenticate(username=username, password=password)
         # print user,"main user"
         if user is not None:
-            # print user,"hzsdfdgxfhcfgh"
-            login(request,user)
+            login(request, user)
 
-            return render(request, "afterlogin.html")
+            return render(request, "home.html")
 
             # Redirect to a success page.
 
@@ -49,26 +49,62 @@ def loginview(request):
             # Return an 'invalid login' error message.
 
 
-
     else:
-        return render(request,"login.html",c)
+        return render(request, "login.html", c)
+
 
 def logout_view(request):
     logout(request)
 
 
 def forget_password(request):
+    if request.method == "POST":
+        username = request.POST['uname']
+        password = request.POST['psw']
 
-    if request.method =="POST":
-         username=request.POST['uname']
-         password=request.POST['psw']
-
-         u = User.objects.get(username=username)
-         u.set_password(password)
-         u.save()
-         return HttpResponse("hello")
+        u = User.objects.get(username=username)
+        u.set_password(password)
+        u.save()
+        return HttpResponse("hello")
     else:
-        return  render(request,"forgetpassword.html")
+        return render(request, "forgetpassword.html")
+
+from django.contrib.auth.decorators import login_required
+
+
+@login_required
+def home(request):
+    return render(request, "home.html")
+
+
+@login_required
+def calendar(request):
+    return render(request, "calendar.html")
+
+@login_required
+def events(request):
+    return render(request, "events.html")
+
+@login_required
+def courses(request):
+    return render(request, "classes.html")
+
+@login_required
+def academics(request):
+    return render(request, "academics.html")
+
+@login_required
+def services(request):
+    return render(request, "services.html")
+
+@login_required
+def maps(request):
+    return render(request, "maps.html")
+
+@login_required
+def library(request):
+    return render(request, "library.html")
+
 
 def update_profile(request):
     c = {}
@@ -86,13 +122,9 @@ def update_profile(request):
 
         uploaded_file_url = fs.url(filename)
         current_user = request.user
-        l=current_user.id
+        l = current_user.id
 
-
-
-
-
-        p=Details(user=l,location=address,birth_date=bday,mobile=mobile,image_path=uploaded_file_url)
+        p = Details(user=l, location=address, birth_date=bday, mobile=mobile, image_path=uploaded_file_url)
 
         p.save()
         # print uploaded_file_url, "dsfsdf"
@@ -104,5 +136,4 @@ def update_profile(request):
         return HttpResponse("sdfdgdg")
 
     else:
-        return render(request,"profile.html",c)
-
+        return render(request, "profile.html", c)
